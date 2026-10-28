@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../../../_app/immutable/entry/start.w9_xpMh5.js" rel="modulepreload">
+    <link href="../../../_app/immutable/entry/start._NI7JoEN.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/WgfOfNfE.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/CqTRWyyJ.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/CrSDBZpE.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/CZomEjWq.js" rel="modulepreload">
-		<link href="../../../_app/immutable/entry/app.C4vKMu_t.js" rel="modulepreload">
+		<link href="../../../_app/immutable/entry/app.D6EI_T_k.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DZni_WYU.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BMv-2JeR.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DQhTBKxc.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DL3LuOT-.js" rel="modulepreload">
 		<link href="../../../_app/immutable/nodes/0.Cfrskkg7.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BRmqMdvF.js" rel="modulepreload">
-		<link href="../../../_app/immutable/nodes/5.D3OgCSUQ.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/Du5cGol9.js" rel="modulepreload">
+		<link href="../../../_app/immutable/nodes/5.BNk9QwVw.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/Dzx8lDIX.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/CCdwa9zY.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/B2BZ6sqr.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/iXLSwIXB.js" rel="modulepreload">
@@ -40,19 +40,19 @@ hint, or the form’s reading of it, has to change.</p> <blockquote><p>“Custom
 apart, or one day apart for people in different places, and a whole month off by one. That reads
 like a time zone or day-boundary bug, not a parser one. The desk noted them (<code>oneDayMove</code> in <code>desk-notes.json</code>) and files them under <code>parser</code> by tenant, so the table counts them in both rows.</p> <blockquote><p>“Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice.” (R-41344, pale.harbour, email)</p></blockquote> <blockquote><p>“Every booking in June is one day off. Only June. Why only June.” (R-41209, alder.physio, app)</p></blockquote> <h2>How this was counted</h2> <ul><li>One id, one report: the export pages overlap, so repeated ids count once (<code>uniqueById</code>).</li> <li>Cause by tenant, not by intake tag: locale and booking form from the tenant directory
 (<code>causeOf</code>), the way <a href="/kb/triage/dedupe">triage</a> explains it.</li> <li>A report in <code>oneDayMove</code> is also <code>one-day</code>, whatever its tenant; it stays counted where the desk files it.</li> <li>The logic is <code>#lib/kb/split.ts</code>; the table is <code>ProblemTable</code>. When reports keep landing on #4471,
-the counts follow.</li></ul> <h2>Lessons</h2> <ul><li>Same subject is not same cause. Count by what the report shows, then merge.</li> <li>A footnote under the biggest row is still a problem. Give it a ticket.</li></ul> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-EBKK-WSTK</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+the counts follow.</li></ul> <h2>Lessons</h2> <ul><li>Same subject is not same cause. Count by what the report shows, then merge.</li> <li>A footnote under the biggest row is still a problem. Give it a ticket.</li></ul> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-76ZK-8BNT</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_kbk34s = {
+					__sveltekit_1jf9cl7 = {
 						base: new URL("../../..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.w9_xpMh5.js"),
-						import("../../../_app/immutable/entry/app.C4vKMu_t.js")
+						import("../../../_app/immutable/entry/start._NI7JoEN.js"),
+						import("../../../_app/immutable/entry/app.D6EI_T_k.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 5],
