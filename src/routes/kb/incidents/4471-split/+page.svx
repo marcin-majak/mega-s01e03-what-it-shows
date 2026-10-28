@@ -1,0 +1,82 @@
+---
+layout: runbook
+title: '#4471, split · what the reports show'
+owner: Marcin Majak
+status: proposed
+reviewed: 2026-10-28
+signature: Marcin Majak
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const repo = 'https://github.com/marcin-majak/mega-s01e03-what-it-shows';
+  const tickets = {
+    parser: `${repo}/issues/1`,
+    hint: `${repo}/issues/2`,
+    'one-day': `${repo}/issues/3`,
+  };
+</script>
+
+[#4471](/kb/incidents/4471) says one issue, one fix queued. Its reports say otherwise. They were
+merged on subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) and tagged by intake
+from the reporter's browser. Neither looks at what the report describes, or at the tenant it came
+from. Read by tenant and by body, #4471 holds more than one problem, and the queued parser fix
+closes only one of them.
+
+<Callout kind="warn">
+Not one issue. Each problem below has its own ticket now; the counts are built from the export at
+render time.
+</Callout>
+
+## What the reports show
+
+<ProblemTable ticket={4471} {tickets} />
+
+## The problems
+
+### `parser`: the shared parser reads every date month first
+
+Day-first tenants (every tenant on file) get day and month swapped when a date goes through the
+shared parser: app, email, and the booking-v2 form. This is the bug #4471 describes, and the one the
+queued fix is for.
+
+> "Our 7 April reminder went out on 4 July." (R-41200, harbour.dental, app)
+
+### `hint`: booking-v3 tells day-first people to type month first
+
+booking-v3 prints `MM/DD/YYYY` under its date field. Day-first tenants on booking-v3
+(alder.physio, copper.studio, pale.harbour) type what the hint says, and the form reads it the
+tenant's way. Every one of these came through the form. The parser fix does not touch them: the
+hint, or the form's reading of it, has to change.
+
+> "Customer booked 11 April and got an invite for 4 November." (R-41259, copper.studio, form)
+
+### `one-day`: the date moves by exactly one day
+
+A month/day swap cannot turn 12 May into 11 May. These reports describe the same booking a day
+apart, or one day apart for people in different places, and a whole month off by one. That reads
+like a time zone or day-boundary bug, not a parser one. The desk noted them (`oneDayMove` in
+`desk-notes.json`); the cause table still files them under `parser` by tenant.
+
+> "Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice." (R-41344, pale.harbour, email)
+
+> "Every booking in June is one day off. Only June. Why only June." (R-41209, alder.physio, app)
+
+## How this was counted
+
+- One id, one report: the export pages overlap, so repeated ids count once (`uniqueById`).
+- Cause by tenant, not by intake tag: locale and booking form from the tenant directory
+  (`causeOf`), the way [triage](/kb/triage/dedupe) explains it.
+- A report in `oneDayMove` is `one-day`, whatever its tenant.
+- The logic is `#lib/kb/split.ts`; the table is `ProblemTable`. When reports keep landing on #4471,
+  the counts follow.
+
+## Lessons
+
+- Same subject is not same cause. Count by what the report shows, then merge.
+- A footnote under the biggest row is still a problem. Give it a ticket.
+
+<RenderStamp {signature} />
