@@ -42,6 +42,10 @@
   </tbody>
 </table>
 
+{#if split.inTwo}
+  <p class="note">{split.inTwo} reports count twice: under <code>one-day</code>, and under the cause the desk files them in by tenant.</p>
+{/if}
+
 <p class="note">{mistagged(split)} reports carry the intake tag of the other cause: intake guessed from the browser, the cause is the tenant's.</p>
 
 <style>

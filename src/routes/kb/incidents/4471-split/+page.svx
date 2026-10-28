@@ -59,7 +59,7 @@ hint, or the form's reading of it, has to change.
 A month/day swap cannot turn 12 May into 11 May. These reports describe the same booking a day
 apart, or one day apart for people in different places, and a whole month off by one. That reads
 like a time zone or day-boundary bug, not a parser one. The desk noted them (`oneDayMove` in
-`desk-notes.json`); the cause table still files them under `parser` by tenant.
+`desk-notes.json`) and files them under `parser` by tenant, so the table counts them in both rows.
 
 > "Client in Lisbon got Tuesday. Client in Toronto got Monday. Same meeting. We held it twice." (R-41344, pale.harbour, email)
 
@@ -70,7 +70,7 @@ like a time zone or day-boundary bug, not a parser one. The desk noted them (`on
 - One id, one report: the export pages overlap, so repeated ids count once (`uniqueById`).
 - Cause by tenant, not by intake tag: locale and booking form from the tenant directory
   (`causeOf`), the way [triage](/kb/triage/dedupe) explains it.
-- A report in `oneDayMove` is `one-day`, whatever its tenant.
+- A report in `oneDayMove` is also `one-day`, whatever its tenant; it stays counted where the desk files it.
 - The logic is `#lib/kb/split.ts`; the table is `ProblemTable`. When reports keep landing on #4471,
   the counts follow.
 
